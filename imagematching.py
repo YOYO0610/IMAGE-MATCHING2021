@@ -68,17 +68,38 @@ def Hamming_distance(hash1,hash2):
             num += 1
     return num
 if __name__ == "__main__":
-    image_file1 = '/Users/gaoyue/PycharmProjects/pythonProject/venv/a.jpeg'
-    image_file2 = '/Users/gaoyue/PycharmProjects/pythonProject/venv/b.jpeg'
+    image_file1 = '/Users/gaoyue/PycharmProjects/pythonProject/venv/a.png'
+    image_file2 = '/Users/gaoyue/PycharmProjects/pythonProject/venv/b.png'
+
     img1 = cv2.imread(image_file1)
     img2 = cv2.imread(image_file2)
+    
+# convert the image 90 degree
+    imgconvert=np.rot90(img2)
+
+
+
     hash1 = pHash(img1)
     hash2 = pHash(img2)
+    hash3=pHash(imgconvert)
+
+
+
     dist = Hamming_distance(hash1, hash2)
+    dist2= Hamming_distance(hash1,hash3)
+
     #calculate the similarity based on distance
     similarity = 1 - dist * 1.0 / 64
+    similarity2 = 1 - dist2 * 1.0 / 64
+
     dist = str(dist)
+    dist2 = str(dist2)
+
     similarity=str(similarity)
+    similarity2=str(similarity2)
+
 
     print('The distance is ：' + dist)
     print('The similarity is ：' + similarity)
+    print('The distance2 is ：' + dist2)
+    print('The similarity2 is ：' + similarity2)
